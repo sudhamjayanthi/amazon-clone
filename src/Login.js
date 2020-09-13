@@ -1,36 +1,23 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import { Link, useHistory } from "react-router-dom";
-import { auth } from './firebase';
+import { auth } from "./firebase";
 
 function Login() {
-  const history = useHistory()
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
-    const signIn = e => {
-        e.preventDefault();
-        auth
-          .signInWithEmailAndPassword(email, password)
-          .then((auth) => {
-            if (auth) {
-              history.push("/");
-            }
-          })
-          .catch((error) => alert(error.message)); 
-    }
-    
-    const register = e => {
-        e.preventDefault();
-        auth
-         .createUserWithEmailAndPassword(email, password)
-         .then((auth) => {
-          //  console.log(auth);
-              if (auth) {
-                history.push('/')
-              }
-          })
-          .catch(error => alert(error.message)); 
-    }
+  const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const signIn = (e) => {
+    e.preventDefault();
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((auth) => {
+        if (auth) {
+          history.push("/");
+        }
+      })
+      .catch((error) => alert(error.message));
+  };
 
   return (
     <div className="login">
@@ -42,7 +29,7 @@ function Login() {
       </Link>
 
       <div className="login__container">
-        <h1>Sign-in</h1>
+        <h1>Login</h1>
 
         <form>
           <h5>Email</h5>
@@ -67,15 +54,10 @@ function Login() {
             Sign-in
           </button>
         </form>
-
         <p>
-          By signing-in you agree to the <strong>AMAZON FAKE CLONE</strong>
-          Conditions of Use & Sale. Please see our Privacy Notice, our Cookies
-          Notice and our Interest-Based Ads Notice.
+          Don't have a account ?
+          <Link to="/register">Create a new account here</Link>
         </p>
-        <button onClick={register} className="login__registerButton">
-          Register
-        </button>
       </div>
     </div>
   );

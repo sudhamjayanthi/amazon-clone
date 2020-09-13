@@ -42,7 +42,7 @@ function Header() {
             <span className="header__optionLineOne">Hello { loggedIn() },</span>
 
             <span className="header__optionLineTwo">
-              {user ? "Sign out" : "Sign Up"}
+              {user ? "Log out" : "Log in"}
             </span>
           </div>
         </Link>
