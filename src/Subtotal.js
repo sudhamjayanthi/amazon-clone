@@ -10,29 +10,26 @@ function Subtotal() {
       <div className="subtotal">
         <CurrencyFormat
           renderText={(value) => (
-            <>
+            <div>
               <p>
                 {/* Part of the homework */}
-                Subtotal ({ action.basket.length } items): 
-                <strong className="sub_totalPrice">{ action.sub_total }</strong>
-                
+                Subtotal ({action.basket.length} items):
+                <strong className="sub_totalPrice">{value}</strong>
               </p>
               <small className="subtotal__gift">
                 <input type="checkbox" /> This order contains a gift
               </small>
-            </>
+            </div>
           )}
           decimalScale={2}
-          value={0} // Part of the homework
+          value={action.sub_total} // Part of the homework
           displayType={"text"}
           thousandSeparator={true}
           prefix={"$"}
         />
 
         <button>Proceed to Checkout</button>
-
       </div>
-    );
-}
+    );};
 
 export default Subtotal
