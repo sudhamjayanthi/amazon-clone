@@ -15,12 +15,12 @@ function Header() {
   };
   const loggedIn = () => {
     if (user){
-      return user.email;
+      return user.displayName;
     } else {
       return ' Guest';
     }
   }
-  console.log(user?.email);
+  console.log("User>>>",user,"Email>>",user?.email,"Name>>",user?.displayName);
   return (
     <div className="Header">
       <Link to="/">

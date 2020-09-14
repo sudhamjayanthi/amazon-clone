@@ -17,7 +17,7 @@ function App() {
     if (authUser){
       dispatch({
         type:'SET_USER',
-        user: authUser
+        user: authUser 
       })  
     } else {
      dispatch({

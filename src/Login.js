@@ -7,6 +7,7 @@ function Login() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const signIn = (e) => {
     e.preventDefault();
     auth
@@ -51,13 +52,12 @@ function Login() {
             onClick={signIn}
             className="login__signInButton "
           >
-            Sign-in
+            Log in
           </button>
         </form>
-        <p>
-          Don't have a account ?
-          <Link to="/register">Create a new account here</Link>
-        </p>
+        <Link to="/register">
+          <button className="login__registerButton">Create a new account</button>
+        </Link>
       </div>
     </div>
   );

@@ -7,14 +7,21 @@ function SignUp() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
+  const updateName = () => {
+    auth.currentUser
+      .updateProfile({
+        displayName: name,
+      })
+  };
   const register = (e) => {
     e.preventDefault();
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
-        //  console.log(auth);
         if (auth) {
+          updateName();
           history.push("/");
         }
       })
@@ -34,6 +41,13 @@ function SignUp() {
         <h1>Sign-up</h1>
 
         <form>
+          <h5>Name</h5>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+
           <h5>Email</h5>
           <input
             type="text"
@@ -53,16 +67,16 @@ function SignUp() {
             onClick={register}
             className="login__signInButton "
           >
-            Register
+            Sign up
           </button>
         </form>
 
         <p>
-          By signing-in you agree to the <strong>AMAZON FAKE CLONE </strong> 
+          By signing-in you agree to the <strong>AMAZON FAKE CLONE </strong>
           Conditions of Use & Sale. Please see our Privacy Notice, our Cookies
           Notice and our Interest-Based Ads Notice. <br />
           <br />
-          Already have an account ?<Link to="/signup"> Login</Link>
+          Already have an account ? <Link to="/signup">Login</Link>
         </p>
       </div>
     </div>
