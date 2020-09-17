@@ -13,14 +13,7 @@ function Header() {
       auth.signOut();
     }
   };
-  const loggedIn = () => {
-    if (user){
-      return user.displayName;
-    } else {
-      return ' Guest';
-    }
-  }
-  console.log("User>>>",user,"Email>>",user?.email,"Name>>",user?.displayName);
+  
   return (
     <div className="Header">
       <Link to="/">
@@ -39,7 +32,7 @@ function Header() {
       <div className="header__nav">
         <Link to={!user && "/signup"} style={{ textDecoration: "none" }}>
           <div onClick={handleAuth} className="header__option">
-            <span className="header__optionLineOne">Hello { loggedIn() },</span>
+            <span className="header__optionLineOne">Hello { !user ? 'Guest' : user.displayName },</span>
 
             <span className="header__optionLineTwo">
               {user ? "Log out" : "Log in"}
@@ -54,7 +47,7 @@ function Header() {
           <span className="header__optionLineOne">Your</span>
           <span className="header__optionLineTwo">Prime</span>
         </div>
-        <Link to="/checkout">
+        <Link to="/cart">
           <div className="header__optionBasket">
             <ShoppingBasketIcon />
             <span className="header__basketCount">
