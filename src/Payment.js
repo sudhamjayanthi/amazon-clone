@@ -22,11 +22,11 @@ function Payment() {
   useEffect(() => {
     const getClientSecret = async () => {
       const response = await axios({
-        method: "post",
+        method: "get",
         // Stripe accepts the total in a currency's subunits
-        url: `payment/create?total=${sub_total * 100}`,
+        url: `/payment/create/${sub_total * 100}`,
       });
-     
+
       setClientSecret( response.data.clientSecret );
   
     };
@@ -38,6 +38,7 @@ function Payment() {
     setDisabled(e.empty);
     setError(e.error ? e.error.message : "");
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -119,6 +120,7 @@ function Payment() {
                 </button>
               </div>
               {error && <div>{error}</div>}
+              {clientSecret}
             </form>
           </div>
         </div>
