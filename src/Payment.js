@@ -120,7 +120,6 @@ function Payment() {
                 </button>
               </div>
               {error && <div>{error}</div>}
-              {clientSecret}
             </form>
           </div>
         </div>
