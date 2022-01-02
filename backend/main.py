@@ -1,31 +1,44 @@
+
+# Required Imports
 from flask import Flask, jsonify
+import stripe 
+import os
 from dotenv import load_dotenv
-import stripe
-import os 
 
+#Initialize Flask App
+api = Flask(__name__)
 
+# Loads the environment variables from .env file
 load_dotenv()
 
-stripe.api_key = os.environ['STRIPE_API']
+# Create a file .env and enter you stripe api key there to keep it secret & use it here!
+stripe.api_key = os.environ.get("STRIPE_API_KEY")
 
-app = Flask(__name__)
-
-@app.route('/')
+# Home endpoint
+# Not required
+@api.route('/')
 def hello():
-  return "Sorry there's nothing here ; )"
+  return "Excuse me! Sorry there's nothing here ; ) "
 
-@app.route('/payment/create/<total>')
+# Payment endpoint
+@api.route('/payment/create/<total>')
 def create(total):
-  intent = stripe.PaymentIntent.create( 
-    amount=int(total)*100, # Stripe accepts the amount in a currency's subunits
+  intent = stripe.PaymentIntent.create(
+    amount=total,
     currency='usd',
   )
-  
+ 
+  # Converting the response into JSON format
   response = jsonify(clientSecret=intent.client_secret)
+  
+  # Adding requied headers
   response.headers.add('Access-Control-Allow-Origin', '*')
-
+  
+  #Returns the client secret along with headers in JSON format
   return response
 
+# Run API
 if __name__ == "__main__":
-  app.run() 
-
+  api.run() 
+  
+# Made with ❤ by Sudham Jayanthi
