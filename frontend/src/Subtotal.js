@@ -7,14 +7,14 @@ import { useHistory } from "react-router-dom";
 
 function Subtotal() {
    const history = useHistory();
-  const [action , dispatch] = useStateValue();
+   const [action , dispatch] = useStateValue();
+
     return (
       <div className="subtotal">
         <CurrencyFormat
           renderText={(value) => (
             <div>
               <p>
-                {/* Part of the homework */}
                 Subtotal ({action.basket.length} items):
                 <strong className="sub_totalPrice">{value}</strong>
               </p>

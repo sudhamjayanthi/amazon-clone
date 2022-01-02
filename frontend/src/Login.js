@@ -1,27 +1,19 @@
 import React, { useState } from "react";
-import "./SignUp.css";
+import "./Login.css";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "./firebase";
 
-function SignUp() {
+function Login() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
 
-  const updateName = () => {
-    auth.currentUser
-      .updateProfile({
-        displayName: name,
-      })
-  };
-  const register = (e) => {
+  const signIn = (e) => {
     e.preventDefault();
     auth
-      .createUserWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email, password)
       .then((auth) => {
         if (auth) {
-          updateName();
           history.push("/");
         }
       })
@@ -29,7 +21,7 @@ function SignUp() {
   };
 
   return (
-    <div className="signUp">
+    <div className="login">
       <Link to="/">
         <img
           className="login__logo"
@@ -38,16 +30,9 @@ function SignUp() {
       </Link>
 
       <div className="login__container">
-        <h1>Sign-up</h1>
+        <h1>Login</h1>
 
         <form>
-          <h5>Name</h5>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-
           <h5>Email</h5>
           <input
             type="text"
@@ -64,23 +49,18 @@ function SignUp() {
 
           <button
             type="submit"
-            onClick={register}
+            onClick={signIn}
             className="login__signInButton "
           >
-            Sign up
+            Log in
           </button>
         </form>
 
-        <p>
-          By signing-in you agree to the <strong>AMAZON FAKE CLONE </strong>
-          Conditions of Use & Sale. Please see our Privacy Notice, our Cookies
-          Notice and our Interest-Based Ads Notice. <br />
-          <br />
-          Already have an account ? <Link to="/signup">Login</Link>
-        </p>
+        <p>Don't have a account? <Link to="/register"> Create a new account </Link> </p>
+
       </div>
     </div>
   );
 }
 
-export default SignUp;
+export default Login;

@@ -1,19 +1,27 @@
 import React, { useState } from "react";
-import "./Login.css";
+import "./SignUp.css";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "./firebase";
 
-function Login() {
+function SignUp() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
-  const signIn = (e) => {
+  const updateName = () => {
+    auth.currentUser
+      .updateProfile({
+        displayName: name,
+      })
+  };
+  const register = (e) => {
     e.preventDefault();
     auth
-      .signInWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
         if (auth) {
+          updateName();
           history.push("/");
         }
       })
@@ -21,7 +29,7 @@ function Login() {
   };
 
   return (
-    <div className="login">
+    <div className="signUp">
       <Link to="/">
         <img
           className="login__logo"
@@ -30,9 +38,16 @@ function Login() {
       </Link>
 
       <div className="login__container">
-        <h1>Login</h1>
+        <h1>Sign-up</h1>
 
         <form>
+          <h5>Name</h5>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+
           <h5>Email</h5>
           <input
             type="text"
@@ -49,18 +64,22 @@ function Login() {
 
           <button
             type="submit"
-            onClick={signIn}
+            onClick={register}
             className="login__signInButton "
           >
-            Log in
+            Sign up
           </button>
         </form>
-        <Link to="/register">
-          <button className="login__registerButton">Create a new account</button>
-        </Link>
+
+        <p>
+          By signing-in you need not agree to the <strong>AMAZON CLONE </strong> Conditions of Use & Sale. You don't need to see our Privacy Notice, our Cookies
+          Notice and our Interest-Based Ads Notice as well. <br />
+          <br />
+          Already have an account ? <Link to="/signup">Login</Link>
+        </p>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default SignUp;

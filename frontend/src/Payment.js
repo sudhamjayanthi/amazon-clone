@@ -23,12 +23,9 @@ function Payment() {
     const getClientSecret = async () => {
       const response = await axios({
         method: "get",
-        // Stripe accepts the total in a currency's subunits
-        url: `/payment/create/${sub_total * 100}`,
+        url: `/payment/create/${sub_total}`,
       });
-
-      setClientSecret( response.data.clientSecret );
-  
+        setClientSecret(response.data.clientSecret);
     };
     getClientSecret();
    
@@ -57,9 +54,9 @@ function Payment() {
         history.replace("/orders");
       });
 
-      // dispatch({
-      //   type: "CLEAR_BASKET",
-      // });
+      dispatch({
+        type: "CLEAR_BASKET",
+      });
   };
 
   return (

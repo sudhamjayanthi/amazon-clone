@@ -16,6 +16,7 @@ function Header() {
   
   return (
     <div className="Header">
+     
       <Link to="/">
         <img
           src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
@@ -23,6 +24,7 @@ function Header() {
           className="header__logo"
         />
       </Link>
+
       <div className="header__search">
         <input type="text" className="header__searchInput" />
         {/* Logo */}
@@ -31,7 +33,7 @@ function Header() {
 
       <div className="header__nav">
         <Link to={!user && "/signup"} style={{ textDecoration: "none" }}>
-          <div onClick={handleAuth} className="header__option">
+          <div onClick={handleAuth} id="login" className="header__option">
             <span className="header__optionLineOne">
               Hello {!user ? "Guest" : user.displayName},
             </span>
@@ -58,6 +60,7 @@ function Header() {
           </div>
         </Link>
       </div>
+    
     </div>
   );
 }

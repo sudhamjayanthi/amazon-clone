@@ -1,6 +1,6 @@
 {
   "short_name": "Amazon",
-  "name": "Amazon",
+  "name": "Amazon Clone",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,7 +8,7 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"

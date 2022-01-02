@@ -1,0 +1,44 @@
+.home {
+    display: flex;
+    justify-content:center;
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
+}
+
+.home__container{
+    max-width: calc(min(1500px, 100%));
+    overflow-x: hidden;
+}
+
+.home__row {
+    display: flex;
+    z-index: 1;
+    margin-right:5px ;
+    margin-left:5px ;
+    justify-content: center;
+}
+
+
+.home__image{
+    display: block;
+    width: 100%;
+    z-index: -1;
+    margin-bottom: -150px;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+@media only screen and (max-width : 768px) {
+    .home__row{
+        flex-direction: column;
+        align-items: center;
+    }   
+}
+
+@media only screen and (max-width : 400px) {
+    .home__image{
+        margin-bottom: -80px;
+    }
+}
+
+    

@@ -1,29 +1,25 @@
-/* eslint-disable no-debugger, no-console */
+// React Components
 import React, { useEffect } from "react";
-import "./App.css";
-import Header from "./Header.js";
-import Home from "./Home.js";
-import Checkout from "./Checkout";
-import Payment from "./Payment";
-// eslint-disable-next-line
-import {
-  BrowserRouter as Router,
-  Switch,
-  Rooter,
-  Route,
-} from "react-router-dom";
-import Login from "./Login";
-import { auth } from "./firebase";
-import { useStateValue } from "./StateProvider";
-import SignUp from "./SignUp";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+//  3rd Party Modules
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import { auth } from "./firebase";
+
+// Custom Components
+import Header from "./Header";
+import Home from "./Home";
+import SignUp from "./SignUp";
+import Login from "./Login";
+import Payment from "./Payment";
+import Checkout from "./Checkout";
+
+import { useStateValue } from "./StateProvider"; 
 
 function App() {
   const [{}, dispatch] = useStateValue();
-  const promise = loadStripe(
-    "pk_test_51HRsQJD05vTlUJVlMhHMZ0rhVrik5J4d9MOM6HheU1nxpjuGQALpaw3eYoq5k5FvjYfsLQkG1CdHmzHysPtGSX5u00AT0fiWwi"
-  );
+  const promise = loadStripe("pk_test_51HRsQJD05vTlUJVlMhHMZ0rhVrik5J4d9MOM6HheU1nxpjuGQALpaw3eYoq5k5FvjYfsLQkG1CdHmzHysPtGSX5u00AT0fiWwi");
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
@@ -69,6 +65,7 @@ function App() {
             <Header />
             <Home />
           </Route>
+          
         </Switch>
       </div>
     </Router>
