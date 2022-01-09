@@ -25,6 +25,7 @@ function Login() {
       <Link to="/">
         <img
           className="login__logo"
+          alt="amazon-logo"
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png"
         />
       </Link>
@@ -56,7 +57,7 @@ function Login() {
           </button>
         </form>
 
-        <p>Don't have a account? <Link to="/register"> Create a new account </Link> </p>
+        <p>Don't have a account? <Link to="/signup"> Create a new account </Link> </p>
 
       </div>
     </div>

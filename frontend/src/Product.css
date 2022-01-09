@@ -8,6 +8,7 @@
   width: max(200px, 80%);
   background-color: white;
   z-index: 1;
+  border: 3px;
 }
 
 .product>img {
@@ -20,9 +21,11 @@
 .product>button {
   border: none;
   color: #111;
-  background: #f0c14b;
+  background: #f0c14b;  
   margin-top: 10px;
   padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 3px;
 }
 
 .product>button:hover,.product>button:active {

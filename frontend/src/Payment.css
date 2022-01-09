@@ -1,20 +1,26 @@
 .payment {
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
 }
 
-.payment__container > h1 {
+.payment__container {
+  max-width: 80vw;
+  border-radius: 10px;
+  background: white;
+}
+
+.payment h1 {
   text-align: center;
-  padding: 10px;
-  font-weight: 400;
-  background-color: rgb(234, 237, 237);
-  border-bottom: 1px solid lightgray;
+  padding-bottom: 0.5em;
 }
 
 .payment__section {
   display: flex;
   padding: 20px;
   margin: 0 20px;
-  border-bottom: 1px solid lightgray;
 }
 
 .payment__title {
@@ -35,23 +41,40 @@
   padding-bottom: 20px;
 }
 
-.payment__details > form > div > button {
+.payment__buyNow {
   background: #f0c14b;
   border-radius: 2px;
   width: 100%;
   height: 30px;
-  border: 1px solid;
+  border: none;
+  font-family: inherit;
   font-weight: bolder;
   margin-top: 10px;
-  border-color: #a88734 #9c7e31 #846a29;
   color: #111;
+  cursor: pointer;
 }
 
-@media only screen and (max-width: 320px){
+.payment__buyNow:disabled {
+  background: #806a33;
+  cursor: not-allowed;
+}
+
+.payment__validation {
+  color: red;
+  margin: 3px auto;
+}
+
+.payment__priceContainer {
+  font-size: 0.8em;
+  margin: 6px auto;
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 690px) {
   .payment__section {
     flex-direction: column;
   }
-  .payment__title{
+  .payment__title {
     margin-bottom: 20px;
   }
 }

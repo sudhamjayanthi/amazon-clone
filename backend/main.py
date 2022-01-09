@@ -1,12 +1,10 @@
-
-# Required Imports
 from flask import Flask, jsonify
 import stripe 
 import os
 from dotenv import load_dotenv
 
 #Initialize Flask App
-api = Flask(__name__)
+app = Flask(__name__)
 
 # Loads the environment variables from .env file
 load_dotenv()
@@ -16,15 +14,15 @@ stripe.api_key = os.environ.get("STRIPE_API_KEY")
 
 # Home endpoint
 # Not required
-@api.route('/')
+@app.route('/')
 def hello():
   return "Excuse me! Sorry there's nothing here ; ) "
 
 # Payment endpoint
-@api.route('/payment/create/<total>')
+@app.route('/payment/create/<total>')
 def create(total):
   intent = stripe.PaymentIntent.create(
-    amount=total,
+    amount=int(float(total)*100), # stripe accepts amount param in the minor unit of a currency (eg: here it takes cents instead of dollars) 
     currency='usd',
   )
  
@@ -37,8 +35,8 @@ def create(total):
   #Returns the client secret along with headers in JSON format
   return response
 
-# Run API
+# Run app
 if __name__ == "__main__":
-  api.run() 
+  app.run() 
   
 # Made with ❤ by Sudham Jayanthi

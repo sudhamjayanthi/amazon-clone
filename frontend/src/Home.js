@@ -14,9 +14,9 @@ function Home() {
         <div className="home__row">
           <Product
             id="1"
-            title="The Lean Startup: How Constant Innovation Creates Radically Successful Businesses Paperback"
-            price={19.99}
-            image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._SX325_BO1,204,203,200_.jpg"
+            title="Elon Musk: How the Billionaire CEO of SpaceX and Tesla is Shaping our Future"
+            price={11.99}
+            image="https://m.media-amazon.com/images/I/5179mrE+WWL.jpg"
             rating={5}
           />
           <Product

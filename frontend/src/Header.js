@@ -7,12 +7,15 @@ import { useStateValue } from "./StateProvider";
 import { auth } from "./firebase";
 
 function Header() {
-  const [{ basket, user }, dispatch] = useStateValue();
+  const [{ basket, user }, ] = useStateValue();
+
   const handleAuth = () => {
     if (user) {
       auth.signOut();
     }
   };
+
+  const loginRoute = !user && "/login";
   
   return (
     <div className="Header">
@@ -32,7 +35,7 @@ function Header() {
       </div>
 
       <div className="header__nav">
-        <Link to={!user && "/signup"} style={{ textDecoration: "none" }}>
+        <Link to={loginRoute} style={{ textDecoration: "none" }}>
           <div onClick={handleAuth} id="login" className="header__option">
             <span className="header__optionLineOne">
               Hello {!user ? "Guest" : user.displayName},
@@ -51,7 +54,7 @@ function Header() {
           <span className="header__optionLineOne">Your</span>
           <span className="header__optionLineTwo">Prime</span>
         </div>
-        <Link to="/cart" style={{ textDecoration: "none" }}>
+        <Link to="cart"  style={{ textDecoration: "none" }}>
           <div className="header__optionBasket">
             <ShoppingBasketIcon />
             <span className="header__basketCount">

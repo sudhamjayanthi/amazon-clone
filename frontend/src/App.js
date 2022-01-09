@@ -18,34 +18,35 @@ import Checkout from "./Checkout";
 import { useStateValue } from "./StateProvider"; 
 
 function App() {
-  const [{}, dispatch] = useStateValue();
+  const [, dispatch] = useStateValue();
   const promise = loadStripe("pk_test_51HRsQJD05vTlUJVlMhHMZ0rhVrik5J4d9MOM6HheU1nxpjuGQALpaw3eYoq5k5FvjYfsLQkG1CdHmzHysPtGSX5u00AT0fiWwi");
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
+      if (authUser) { // if user logged in
         dispatch({
           type: "SET_USER",
           user: authUser,
         });
-      } else {
+      } else { // else if user logged out 
         dispatch({
           type: "SET_USER",
-          user: null,
+          user: null, 
         });
       }
     });
+  // eslint-disable-next-line
   }, []);
 
   return (
     <Router>
       <div className="App">
         <Switch>
-          <Route path="/signup">
+          <Route path="/login">
             <Login />
           </Route>
 
-          <Route path="/register">
+          <Route path="/signup">
             <SignUp />
           </Route>
 
